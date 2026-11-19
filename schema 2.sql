@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS folders (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  parent_id INTEGER NOT NULL DEFAULT 0,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  folder_id INTEGER NOT NULL DEFAULT 0,
+  kind TEXT NOT NULL,
+  file_id TEXT,
+  text TEXT,
+  caption TEXT,
+  created INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS state (
+  user_id INTEGER PRIMARY KEY,
+  panel_id INTEGER,
+  cur INTEGER NOT NULL DEFAULT 0,
+  active INTEGER NOT NULL DEFAULT 0,
+  locked INTEGER NOT NULL DEFAULT 1,
+  awaiting TEXT
+);
+
+CREATE TABLE IF NOT EXISTS shown (
+  msg_id INTEGER PRIMARY KEY,
+  chat_id INTEGER NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_folders_parent ON folders(parent_id);
+CREATE INDEX IF NOT EXISTS idx_items_folder ON items(folder_id);

@@ -1,0 +1,11 @@
+name = "tg-saver-bot"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tgbot"
+database_id = "3916445c-8b59-43f4-bc59-4bcebbcb75a7"
+
+[triggers]
+crons = ["*/10 * * * *"]
